@@ -23,7 +23,6 @@
       min-height: 100dvh;
       background: var(--bg);
       color: var(--ink);
-      white-space: nowrap;
       font-family: 'Cormorant Garamond', Georgia, serif;
       -webkit-font-smoothing: antialiased;
     }
@@ -388,6 +387,46 @@
     @media (max-width: 480px) {
       header { padding: 1.2rem 1.2rem 1rem; }
       .drawer-body { padding: 1.2rem; }
+    }
+
+    @media (max-width: 600px) {
+      .stanza span {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        white-space: normal;
+      }
+      article {
+        gap: 2rem;
+        text-align: left;
+        padding: 0 0.5rem;
+      }
+      .poem-wrap {
+        max-width: 100%;
+      }
+      main {
+        padding: 0.5rem 1rem 2rem;
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .stanza span {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        white-space: normal;
+      }
+      article {
+        gap: 2rem;
+        text-align: left;
+        padding: 0 0.5rem;
+      }
+      .poem-wrap {
+        max-width: 100%;
+      }
+      main {
+        padding: 0.5rem 1rem 2rem;
+        gap: 1.5rem;
+      }
     }
   </style>
 </head>
