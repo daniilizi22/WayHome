@@ -24,18 +24,13 @@ function pluralPoems(n) {
   return `${n} стихов`;
 }
 
-const FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com">\n  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cormorant+SC:wght@300;400&display=swap" rel="stylesheet">';
-const THEME_EARLY = '<script>try { if (localStorage.getItem(\'wayhome-theme\') === \'light\') document.documentElement.setAttribute(\'data-theme\', \'light\'); } catch (e) {}</script>';
+const FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com">\n  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Cormorant+SC:wght@300;400&display=swap" rel="stylesheet">';
 const COUNTER = '<script data-goatcounter="https://daniilizi22.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>';
 
 // Те же цвета и шрифты, что на главной
 const CSS = `
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --bg: #0e0d0b; --bg2: #141310; --ink: #e8e0d0; --ink-muted: #7a7060; --ink-faint: #2e2c28; --gold: #c9a84c; --gold-dim: #7a6230; }
-    :root[data-theme="light"] { --bg: #ede2d0; --bg2: #e4d6bf; --ink: #2a1c10; --ink-muted: #5c4631; --ink-faint: #cdb99c; --gold: #8b4a1c; --gold-dim: #9c6b3f; }
-    :root[data-theme="light"] .stanza span, :root[data-theme="light"] .toc a .first { font-weight: 600; }
-    :root[data-theme="light"] .brand a { font-weight: 400; color: #3a2616; }
-    :root[data-theme="light"] .brand p { color: #7a5a3c; }
     html, body { min-height: 100dvh; background: var(--bg); color: var(--ink); font-family: 'Cormorant Garamond', Georgia, serif; -webkit-font-smoothing: antialiased; }
     a { color: inherit; text-decoration: none; }
     .page { min-height: 100dvh; display: flex; flex-direction: column; }
@@ -81,16 +76,6 @@ const CSS = `
     }
     @media print { .header-controls, .poem-nav, .actions, footer { display: none; } body { background: white; color: black; } }`;
 
-const THEME_JS = `
-  function toggleTheme() {
-    var light = document.documentElement.getAttribute('data-theme') !== 'light';
-    if (light) document.documentElement.setAttribute('data-theme', 'light');
-    else document.documentElement.removeAttribute('data-theme');
-    document.getElementById('btnTheme').textContent = light ? '☀' : '☽';
-    try { localStorage.setItem('wayhome-theme', light ? 'light' : 'dark'); } catch (e) {}
-  }
-  if (document.documentElement.getAttribute('data-theme') === 'light') document.getElementById('btnTheme').textContent = '☀';`;
-
 function page({ title, description, url, body, script = '' }) {
   return `<!DOCTYPE html>
 <html lang="ru">
@@ -108,7 +93,6 @@ function page({ title, description, url, body, script = '' }) {
   <meta property="og:url" content="${url}">
   <meta property="og:locale" content="ru_RU">
   ${FONTS}
-  ${THEME_EARLY}
   <style>${CSS}
   </style>
 </head>
@@ -120,14 +104,13 @@ function page({ title, description, url, body, script = '' }) {
       <p>${AUTHOR}</p>
     </div>
     <div class="header-controls">
-      <button class="btn-icon" id="btnTheme" onclick="toggleTheme()" title="Тема">☽</button>
       <a class="btn-pill btn-accent" href="./">☰ Все стихи</a>
     </div>
   </header>
 ${body}
   <footer>Сборник духовной поэзии «${TITLE}» · 2026</footer>
 </div>
-<script>${THEME_JS}${script}
+<script>${script}
 </script>
 ${COUNTER}
 </body>

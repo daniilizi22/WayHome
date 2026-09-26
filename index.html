@@ -14,8 +14,7 @@
   <meta property="og:url" content="https://daniilizi22.github.io/WayHome/">
   <meta property="og:locale" content="ru_RU">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cormorant+SC:wght@300;400&display=swap" rel="stylesheet">
-  <script>try { if (localStorage.getItem('wayhome-theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Cormorant+SC:wght@300;400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -28,26 +27,6 @@
       --gold: #c9a84c;
       --gold-dim: #7a6230;
     }
-
-    :root[data-theme="light"] {
-      --bg: #ede2d0;
-      --bg2: #e4d6bf;
-      --ink: #2a1c10;
-      --ink-muted: #5c4631;
-      --ink-faint: #cdb99c;
-      --gold: #8b4a1c;
-      --gold-dim: #9c6b3f;
-    }
-
-    /* Светлая тема: тонкие штрихи Cormorant теряются на светлом фоне */
-    :root[data-theme="light"] .stanza span,
-    :root[data-theme="light"] .toc-item .toc-first { font-weight: 600; }
-    :root[data-theme="light"] .brand h1 { font-weight: 400; color: #3a2616; }
-    :root[data-theme="light"] .brand p { color: #7a5a3c; }
-    :root[data-theme="light"] .poem-label .tag { font-weight: 400; }
-    :root[data-theme="light"] .poem-label .num { font-weight: 400; }
-
-    :root[data-theme="light"] body::before { background: radial-gradient(ellipse at 50% 20%, rgba(255,248,235,0.55) 0%, transparent 70%); }
 
     html, body {
       min-height: 100dvh;
@@ -532,7 +511,6 @@
     </div>
     <div class="header-controls">
       <button class="btn-icon btn-print" onclick="window.print()" title="Печать">⎙</button>
-      <button class="btn-icon" id="btnTheme" onclick="toggleTheme()" title="Тема">☽</button>
       <button class="btn-pill btn-accent btn-all" onclick="openDrawer()" title="Список всех стихов">☰ Все стихи</button>
     </div>
   </header>
@@ -786,21 +764,7 @@ window.addEventListener('hashchange', () => {
   if (idx >= 0) showPoem(idx);
 });
 
-// Theme toggle (remembered between visits)
-function applyTheme(light) {
-  if (light) document.documentElement.setAttribute('data-theme', 'light');
-  else document.documentElement.removeAttribute('data-theme');
-  document.getElementById('btnTheme').textContent = light ? '☀' : '☽';
-}
-
-function toggleTheme() {
-  const light = document.documentElement.getAttribute('data-theme') !== 'light';
-  applyTheme(light);
-  try { localStorage.setItem('wayhome-theme', light ? 'light' : 'dark'); } catch (e) {}
-}
-
 // Init
-try { applyTheme(localStorage.getItem('wayhome-theme') === 'light'); } catch (e) {}
 document.getElementById('poemCount').textContent = pluralPoems(POEMS.length);
 (() => {
   const idx = indexFromHash();
