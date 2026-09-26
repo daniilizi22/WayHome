@@ -4,6 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Путь Домой · Даниил Побережный</title>
+  <meta name="description" content="Путь Домой — сборник духовной поэзии Даниила Побережного: стихи о вере, покаянии, молитве и пути души к Отцу.">
+  <meta name="author" content="Даниил Побережный">
+  <link rel="canonical" href="https://daniilizi22.github.io/WayHome/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Путь Домой">
+  <meta property="og:title" content="Путь Домой · Даниил Побережный">
+  <meta property="og:description" content="Сборник духовной поэзии: стихи о вере, покаянии, молитве и пути души к Отцу.">
+  <meta property="og:url" content="https://daniilizi22.github.io/WayHome/">
+  <meta property="og:locale" content="ru_RU">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cormorant+SC:wght@300;400&display=swap" rel="stylesheet">
   <script>try { if (localStorage.getItem('wayhome-theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}</script>
@@ -451,6 +460,11 @@
       animation: fadeUp 1s 2s ease both;
     }
 
+    footer a {
+      color: var(--gold);
+      border-bottom: 1px solid var(--gold-dim);
+    }
+
     /* TRANSITIONS */
     .poem-wrap {
       transition: opacity 0.3s, transform 0.3s;
@@ -546,7 +560,7 @@
     </div>
   </main>
 
-  <footer>Сборник духовной поэзии «Путь Домой» · 2026</footer>
+  <footer>Сборник духовной поэзии «Путь Домой» · 2026 · <a href="poems/">Оглавление</a></footer>
 </div>
 
 <!-- ARCHIVE DRAWER -->
@@ -644,7 +658,7 @@ function showRandom() {
 
 // Share link to the current poem
 function share() {
-  const url = location.origin + location.pathname + '#' + POEMS[currentIdx].id;
+  const url = location.origin + location.pathname.replace(/index\.html$/, '') + 'poems/' + POEMS[currentIdx].id + '.html';
   copyText(url).then(() => {
     showToast(`Ссылка на стих № ${POEMS[currentIdx].id} скопирована`);
   }).catch(() => showToast('Не удалось скопировать'));
